@@ -3,24 +3,36 @@ package calculadora;
 import static org.junit.Assert.*;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CalculadoraTest {
 
-	Calculadora calcu;
+	static Calculadora calcu;
+	
+	@BeforeClass
+	public static void preCalcu() {
+		calcu =new Calculadora(20,30);
+		System.out.println("PREPARANDO PRUEBAS!!!!!");
+	}
+	
+	@AfterClass
+	public static void postCalcu() {
+		System.out.println("FINALIZANDO LAS PRUEBAS");
+		calcu=null;
+	}
 	
 	@Before
-	public void creaCalculadora() {
-		calcu =new Calculadora(20,30);
-		//System.out.println("inicio prueba");
+	public void creaCalculadora() {		
+		System.out.println("inicio prueba");
 	}
 	
 	
 	@After
 	public void borraCalculadora() {
-		calcu = null;
-		//System.out.println("fin prueba");
+		System.out.println("fin prueba");
 	}
 	
 	
@@ -30,6 +42,15 @@ public class CalculadoraTest {
 		int resultado = calcu.suma();
 		assertEquals(50,resultado);
 	}
+	
+	@Test
+	public void testSuma2() {
+		//Calculadora calcu =new Calculadora(20,30);
+		int resultado = calcu.suma();
+		assertEquals(50,resultado);
+	}
+
+	
 
 	@Test
 	public void testResta() {
